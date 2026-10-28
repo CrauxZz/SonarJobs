@@ -1,30 +1,31 @@
-# SonarJobs — app local de un solo archivo
+SonarJobs — single-file local app
+Open index.html in Chrome or Edge on Windows. No installation, account, backend, or database required. It requires internet access to query feeds and load the PDF/DOCX readers.
 
-Abre `index.html` en Chrome o Edge sobre Windows. No necesita instalación, cuenta, backend ni base de datos. Requiere internet para consultar feeds y cargar los lectores de PDF/DOCX.
+The interface is available in Spanish, English, and French via the header selector. The preference is retained only while the tab is open.
 
-La interfaz está disponible en español, inglés y francés mediante el selector del encabezado. La preferencia se mantiene solo mientras la pestaña está abierta.
+Features
+Reads PDF, DOCX, or TXT CVs in the browser. The text lives only in memory while the page is open.
 
-## Funciones
+Queries public feeds from Remotive, Remote OK, Jobicy, and Arbeitnow; deduplicates, filters, and sorts results in the browser.
 
-- Lee CV PDF, DOCX o TXT dentro del navegador. El texto solo vive en memoria mientras la página está abierta.
-- Consulta feeds públicos de Remotive, Remote OK, Jobicy y Arbeitnow; deduplica, filtra y ordena los resultados en el navegador.
-- Compara palabras del CV con título, etiquetas y descripción de cada vacante. Muestra los términos coincidentes como evidencia; el porcentaje es similitud textual, no una probabilidad de contratación.
-- Prepara una carta breve editable a partir de términos presentes en el CV; permite copiarla o descargarla.
-- Abre la publicación original para que la persona complete y envíe directamente al empleador.
-- No usa `localStorage`, cookies propias, analítica, cuentas ni servidor de perfiles. Al cerrar la pestaña desaparece el CV y los resultados en memoria.
+Compares CV words against each job’s title, tags, and description. Shows matching terms as evidence; the percentage is textual similarity, not a probability of being hired.
 
-## Privacidad y red
+Prepares a short editable cover letter based on terms present in the CV; lets you copy or download it.
 
-El documento nunca se sube a SonarJobs ni se incluye en las consultas. Las consultas van a los endpoints de Remotive y Arbeitnow; los campos opcionales de puesto y ubicación se filtran en el navegador y no se envían. PDF.js y Mammoth se descargan desde cdnjs solo cuando se selecciona PDF o DOCX. El acceso a esas fuentes puede revelar la dirección IP al proveedor/CDN, como cualquier solicitud web.
+Opens the original posting so the person can complete and submit it directly to the employer.
 
-Cada fuente conserva su atribución y enlace de publicación; Remotive, por ejemplo, exige enlazar su vacante original y acredita retrasos de hasta 24 horas. Remote OK y Jobicy permiten feeds públicos, aunque la URL pública normalmente conduce primero al portal de la bolsa y no siempre al formulario ATS. Los puestos, cobertura, disponibilidad de feeds, CORS y términos de cada proveedor pueden cambiar; revisa siempre la oferta original.
+Does not use localStorage, its own cookies, analytics, accounts, or a profile server. When the tab is closed, the CV and results in memory disappear.
 
-## Límite de los envíos externos
+Privacy and network
+The document is never uploaded to SonarJobs or included in queries. Queries go to the Remotive and Arbeitnow endpoints; the optional job and location fields are filtered in the browser and are not sent. PDF.js and Mammoth are downloaded from cdnjs only when PDF or DOCX is selected. Accessing those sources may reveal the IP address to the provider/CDN, as with any web request.
 
-Desde un HTML abierto como `file://`, el navegador no puede completar de forma universal formularios de otros dominios: el aislamiento entre sitios, los inicios de sesión, CAPTCHA y los flujos propios de cada ATS lo impiden. Por eso SonarJobs prepara el texto y abre el portal oficial; el candidato revisa y pulsa enviar allí. No usa credenciales, automatización de navegador ni envíos masivos.
+Each source retains its attribution and posting link; Remotive, for example, requires linking to its original job posting and acknowledges delays of up to 24 hours. Remote OK and Jobicy allow public feeds, although the public URL usually leads first to the job board portal and not always to the ATS form. Jobs, coverage, feed availability, CORS, and each provider’s terms may change; always review the original offer.
 
-Para completar una candidatura sin intervención habría que integrar cada empleador/ATS mediante una API de postulación autorizada, normalmente con OAuth y un backend seguro para proteger credenciales. Eso ya no puede hacerse de forma segura con un único HTML local.
+Limitation of external submissions
+From an HTML file opened as file://, the browser cannot universally complete forms on other domains: site isolation, logins, CAPTCHA, and each ATS’s own flows prevent it. That is why SonarJobs prepares the text and opens the official portal; the candidate reviews and clicks submit there. It does not use credentials, browser automation, or mass submissions.
 
-## Alcance
+To complete an application without intervention, each employer/ATS would need to be integrated through an authorized application API, typically with OAuth and a secure backend to protect credentials. That can no longer be done securely with a single local HTML file.
 
-La búsqueda cubre las vacantes expuestas por estos feeds; **no puede listar toda la web**. Muchas empresas y bolsas no ofrecen APIs públicas, y no se raspan páginas protegidas. Este formato escala en distribución (un archivo que cada persona ejecuta localmente), pero no es un servicio centralizado: no almacena CVs ni sincroniza estados entre dispositivos. Añadir más países, bolsas laborales o portales requiere una API/feed permitido por cada fuente.
+Scope
+Search covers the vacancies exposed by these feeds; it cannot list the entire web. Many companies and job boards do not offer public APIs, and protected pages are not scraped. This format scales in distribution (one file that each person runs locally), but it is not a centralized service: it does not store CVs or sync state across devices. Adding more countries, job boards, or portals requires an API/feed permitted by each source.
+
